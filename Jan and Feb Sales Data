@@ -1,0 +1,41 @@
+/* Comment Out entries extraneous to the query you have selected */
+
+-- 1 How many orders placed in January?
+--select count(*) from bit_db.JanSales
+
+-- 2 How many of those were for an iPhone?
+--select count(*) from bit_db.jansales where product='iPhone'
+
+-- 3 Return customer numbers for all February orders
+/* SELECT acctnum FROM BIT_DB.customers cust
+     INNER JOIN BIT_DB.FebSales Feb
+     ON cust.order_id=FEB.orderid */
+
+-- 4 Cheapest product sold in January? price?
+/* SELECT DISTINCT Product, price
+      FROM BIT_DB.JanSales
+      WHERE price IN(SELECT min(price) FROM BIT_DB.JanSales)
+      ORDER BY price
+      LIMIT 1 */
+
+--5 total revenue for each product sold in January
+/* SELECT sum(quantity)*price as revenue,
+       product
+      FROM BIT_DB.JanSales
+      GROUP BY product */
+
+--6 Which products sold at this address, how many of each?
+/* SELECT sum(quantity),
+       product,
+       sum(quantity) * price as revenue
+       FROM BIT_DB.FebSales
+       WHERE location = '548 Lincoln St, Seattle, WA 98101'
+   GROUP BY product */
+   
+--7 How many custs ordered >2 products at a time? Avg amount spent for those customers?
+/* SELECT COUNT(cust.acctnum),
+       avg(quantity)*price
+       FROM BIT_DB.FebSales AS feb
+       LEFT JOIN BIT_DB.customers AS cust
+       ON feb.orderid=cust.order_id
+    WHERE feb.quantity > 2 */
