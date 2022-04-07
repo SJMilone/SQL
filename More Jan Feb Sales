@@ -1,0 +1,34 @@
+--1. 
+/*
+SELECT orderdate
+FROM BIT_DB.FebSales 
+WHERE orderdate between '02/13/19 00:00' AND '02/18/19 00:00'
+*/
+
+--2. 
+/*
+SELECT location
+FROM BIT_DB.FebSales 
+WHERE orderdate = '02/18/19 01:35'
+*/
+
+--3. 
+/*
+SELECT sum(quantity)
+FROM BIT_DB.FebSales 
+WHERE orderdate like '02/18/19%'
+*/
+
+--1 Product contains the string 'Batteries"
+/*
+SELECT distinct Product
+FROM BIT_DB.FebSales
+WHERE Product like '%Batteries%'
+*/
+
+--2 Products sold in Feb that end in 99 cents
+ /*
+SELECT distinct Product, Price
+FROM BIT_DB.FebSales 
+WHERE Price like '%.99'
+*/
