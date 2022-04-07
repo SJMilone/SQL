@@ -1,0 +1,23 @@
+CREATE TABLE penstore (id INTEGER PRIMARY KEY, 
+                       type TEXT, 
+                       blank TEXT, 
+                       finish TEXT, 
+                       cost INTEGER, 
+                       price INTEGER);
+INSERT INTO penstore VALUES (1, "BP", "Olive", "Rhodium", 18, 49);
+INSERT INTO penstore VALUES (2, "RB", "Olive", "Gold", 14, 44);
+INSERT INTO penstore VALUES (3, "Pencil", "Shop", "Chrome", 8, 29);
+INSERT INTO penstore VALUES (4, "BP", "Shop", "Blk Ti", 8, 29);
+INSERT INTO penstore VALUES (5, "BP", "Shop", "Gunmetal", 12, 39);
+INSERT INTO penstore VALUES (6, "BP", "Shop", "Rhodium", 18, 49);
+INSERT INTO penstore VALUES (7, "Pencil", "Olive", "Rhodium", 18, 49);
+INSERT INTO penstore VALUES (8, "FP", "Olive", "Rhodium", 28, 79);
+INSERT INTO penstore VALUES (9, "BP", "Fenway", "Gold", 18, 49);
+INSERT INTO penstore VALUES (10, "BP", "Bos Garden", "Rhodium", 18, 49);
+INSERT INTO penstore VALUES (11, "FP", "Shop", "Gunmetal", 25, 79);
+INSERT INTO penstore VALUES (12, "RB", "Fenway", "Rhodium", 18, 49);
+INSERT INTO penstore VALUES (13, "FP", "Bos Garden", "Rhodium", 38, 99);
+INSERT INTO penstore VALUES (14, "Resin", "Heart Floral", "", 8, 24);
+INSERT INTO penstore VALUES (15, "Resin", "Round Floral", "", 9, 27);
+SELECT type, SUM(cost*3), SUM(price), Blank, Finish FROM penstore WHERE blank = "Fenway" GROUP BY type ORDER BY type;
+SELECT type, blank, finish, price FROM penstore  ORDER BY type ;
