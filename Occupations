@@ -1,0 +1,12 @@
+/* from table occupations containing name and occupation, first output name and parenthesized initial of profession.  Then output string 'There are a total of [count of occupations] [lowercase occupation name]s.' ordered by count ascending. Where there are multiple with same count, order alphabetically.
+*/
+select 
+  concat(name, '(', left(occupation,1), ')')
+  from occupations
+  order by name asc;
+  
+select 
+  concat('There are a total of ', count(1), ' ' , lower(occupation), 's.')
+  from occupations
+  group by occupation
+order by count(1) asc, occupation asc;
