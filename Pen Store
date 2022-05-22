@@ -19,5 +19,6 @@ INSERT INTO penstore VALUES (12, "RB", "Fenway", "Rhodium", 18, 49);
 INSERT INTO penstore VALUES (13, "FP", "Bos Garden", "Rhodium", 38, 99);
 INSERT INTO penstore VALUES (14, "Resin", "Heart Floral", "", 8, 24);
 INSERT INTO penstore VALUES (15, "Resin", "Round Floral", "", 9, 27);
-SELECT type, SUM(cost*3), SUM(price), Blank, Finish FROM penstore WHERE blank = "Fenway" GROUP BY type ORDER BY type;
+SELECT type, SUM(cost*3), SUM(price), Blank, Finish FROM penstore 
+  WHERE blank = "Fenway" GROUP BY type ORDER BY type;
 SELECT type, blank, finish, price FROM penstore  ORDER BY type ;
