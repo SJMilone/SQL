@@ -1,0 +1,56 @@
+/* Dataset VEHICLES comprises a single table containing 
+   listings from Craig's List.  Dataset from Kaggle.com
+   Various queries are posed on this data. Null values are excluded */
+
+/* Filtering out invalid data */
+
+SELECT distinct vin, color, Year, manufacturer, model, price
+FROM Vehicles.dbo.vehicles
+where year > 1905
+  and manufacturer is not null
+  and model is not null
+  and vin is not null
+order by year, manufacturer, model;
+
+/* Tri-Five Era Chevy's plus 58-59 Impalas*/
+
+SELECT distinct vin, color, Year, manufacturer, model, price
+FROM vehicles.dbo.vehicles
+where (year between 1955 and 1957
+  or ((year between 1958 and 1959) AND model like 'Imp%'))
+  and manufacturer like 'Chev%'
+  and model is not null
+  and vin is not null
+order by year, manufacturer, model;
+
+/* 55-59 Ford */
+
+SELECT distinct vin, color, Year, manufacturer, model, price
+FROM vehicles.dbo.vehicles
+where year between 1955 and 1959
+  and manufacturer like 'Ford'
+  and model is not null
+  and vin is not null
+order by year, manufacturer, model;
+
+/* Classic Volkswagen Beetles & Super Beetles ... EXCLUDE 'New Beetle' */
+
+SELECT distinct vin, color, Year, manufacturer, model, price
+FROM vehicles.dbo.vehicles
+where manufacturer like 'Volk%'
+  and (model LIKE '%bee%' or model like 'super b%')
+  and vin is not null
+  and year <1980
+order by year, manufacturer, model;
+
+/* Sedan, SUV, or Minivans in Bellingham, Boston, or Worcester 
+   with VIN and Color stated, between $500 and $5,000 */
+
+SELECT region, vin, color, Year, manufacturer, model, type, price
+FROM vehicles.dbo.vehicles
+WHERE price BETWEEN 500 AND 5000 and
+      region IN ('Bellingham', 'Boston', 'Worcester') AND
+	  vin IS NOT NULL AND
+	  color IS NOT NULL AND
+	  type IN ('sedan', 'SUV','mini-van','minivan')
+ORDER BY region, year DESC, price desc, manufacturer, model;
